@@ -48,7 +48,7 @@ struct VideoView: View {
         let name = videoName + "Video"
         let videoPath = Bundle.main.path(forResource: name, ofType: "mp4")
         print("Video name: \(videoPath)")
-        self.url = URL(fileURLWithPath: videoPath!)
+        self.url = URL(fileURLWithPath: videoPath ?? "nothing")
     }
 
     var body: some View {

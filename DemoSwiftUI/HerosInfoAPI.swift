@@ -22,11 +22,11 @@ class HerosInfoAPI {
 
         let heros = [
             HerosInfo(name:"Superman",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Superman"),
-            HerosInfo(name:"Batman",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Batman"),
-            HerosInfo(name:"Flash",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Flash_(comics)"),
-            HerosInfo(name:"Auqaman",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Aquaman"),
-            HerosInfo(name:"Ironman",company:"Marvel",video:"",web:"https://en.wikipedia.org/wiki/Tony_Stark_(Marvel_Cinematic_Universe)"),
-            HerosInfo(name:"Spiderman",company:"Marvel",video:"",web:"https://en.wikipedia.org/wiki/Spider-Man"),
+            //HerosInfo(name:"Batman",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Batman"),
+            //HerosInfo(name:"Flash",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Flash_(comics)"),
+            //HerosInfo(name:"Auqaman",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Aquaman"),
+            //HerosInfo(name:"Ironman",company:"Marvel",video:"",web:"https://en.wikipedia.org/wiki/Tony_Stark_(Marvel_Cinematic_Universe)"),
+            //HerosInfo(name:"Spiderman",company:"Marvel",video:"",web:"https://en.wikipedia.org/wiki/Spider-Man"),
             HerosInfo(name:"Greenlantern",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Green_Lantern"),
         ]
         return heros
