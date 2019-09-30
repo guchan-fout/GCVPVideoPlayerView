@@ -11,14 +11,11 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct VideoPlayerRepresentable: UIViewRepresentable {
     var url: URL
-    @ObservedObject var videoPlayerContainer: AVPlayerContainer
-    //var videoContainer: GCVPVideoPlayerContainer
 
      func makeUIView(context: Context) -> GCVPVideoPlayerView {
         let frame = UIScreen.main.bounds
 
-        let uiView = GCVPVideoPlayerView(frame: frame, videoUrl: url, videoPlayer: videoPlayerContainer.getAVPlayer())
-
+        let uiView = GCVPVideoPlayerView(frame: frame, videoUrl: url)
         //uiView.playToEndTime = { context.coordinator.playToEndTime() }
         //uiView.replay = { context.coordinator.replay() }
         //uiView.stateDidChanged = { context.coordinator.stateDidChanged($0) }
@@ -44,20 +41,18 @@ struct VideoPlayerRepresentable: UIViewRepresentable {
     }
 }
 
-struct FullScreenVideoView: View {
+struct VideoView: View {
     var url: URL
-    var videoContainer: AVPlayerContainer
 
-    init(videoName: String, container: AVPlayerContainer) {
+    init(videoName: String) {
         let name = videoName + "Video"
         let videoPath = Bundle.main.path(forResource: name, ofType: "mp4")
-        print("Video name: \(String(describing: videoPath))")
-        self.url = URL(fileURLWithPath: videoPath ?? "nothing")
-        self.videoContainer = container
+        print("Video name: \(videoPath)")
+        self.url = URL(fileURLWithPath: videoPath!)
     }
 
     var body: some View {
-        VideoPlayerRepresentable(url: url, videoPlayerContainer: videoContainer)
+        VideoPlayerRepresentable(url: url)
     }
 }
 
