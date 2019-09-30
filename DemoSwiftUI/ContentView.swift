@@ -9,46 +9,6 @@
 import SwiftUI
 import AVKit
 
-struct SuperHeroContentRow: View {
-    let hero: HerosInfo
-
-
-    @State var isShowingVideo = false
-
-    var body: some View {
-        VStack {
-            //self.setVideoPlayer(url: hero.name)
-            Image(hero.name).resizable().frame(width: 160, height: 90, alignment: .leading)
-            Text(hero.name).font(.body)
-
-            VideoViewWidge(avPlayer: self.setVideoPlayer(url: hero.name))
-
-            /*
-             Button(action: {
-             print("button pressed")
-             self.isShowingVideo.toggle()
-             }) {
-             Text("Youtube").foregroundColor(.red)
-             }.sheet(isPresented: $isShowingVideo) {
-             VideoView(videoName: self.hero.name)
-             }
-             */
-        }
-    }
-
-    func setVideoPlayer(url:String) -> AVPlayer{
-        let name = url + "Video"
-        let videoPath = Bundle.main.path(forResource: name, ofType: "mp4")
-        print("Vido name: \(videoPath)")
-        let videoUrl = URL(fileURLWithPath: videoPath ?? "nothing")
-        let videoItem = AVPlayerItem(url:videoUrl)
-        let avPlayer = AVPlayer(playerItem: videoItem)
-        return avPlayer
-    }
-
-
-}
-
 struct ContentView: View {
     private let heros = HerosInfoAPI.getHeros()
 
@@ -56,12 +16,44 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(heros) { hero in
-                    NavigationLink(destination: VideoView(videoName: hero.name)){
-                        SuperHeroContentRow(hero: hero)
-                    }.frame(height: 330)
+                    //NavigationLink(destination: FullScreenVideoView(videoName: hero.name)){
+                    SuperHeroContentRow(hero: hero).frame(height: 330)
+                   //   }.frame(height: 330)
                 }
             }
         }
+    }
+}
+
+struct SuperHeroContentRow: View {
+    var hero: HerosInfo
+    // @ObservedObject var videoPlayerContainer: GCVPVideoPlayerContainer = GCVPVideoPlayerContainer()
+    var videoPlayerContainer: AVPlayerContainer = AVPlayerContainer()
+
+    var body: some View {
+        VStack {
+            Text(hero.name).font(.title)
+            self.setVideoPlayer(url: hero.name).hidden()
+
+            NavigationLink(destination: VideoPlayerFullScreenView(videoContainer: videoPlayerContainer)) {
+                //Text("Show Detail View")
+                VideoViewWidge(videoContainer: videoPlayerContainer)
+            }
+        }.onAppear(){
+            print("onAppear")
+            //self.videoPlayerContainer.setAVPlayer(videoPlayer: self.setVideoPlayer(url: self.hero.name))
+        }.onTapGesture{
+            //self.setVideoPlayerCurrentTime(avPlayer: self.videoPlayerContainer.videoPlayer)
+            print("onTapGesture pressed")
+        }.onDisappear() {
+            print("onDisappear pressed")
+            //self.videoPlayerContainer.getAvPlayer().pause()
+        }
+    }
+
+    func setVideoPlayer(url:String) -> Text {
+        videoPlayerContainer.createAvPlayer(url: url)
+        return Text("")
     }
 }
 

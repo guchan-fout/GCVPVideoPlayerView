@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import AVKit
 
 struct  HerosInfo: Identifiable{
     var id = UUID()
@@ -27,7 +28,7 @@ class HerosInfoAPI {
             //HerosInfo(name:"Auqaman",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Aquaman"),
             //HerosInfo(name:"Ironman",company:"Marvel",video:"",web:"https://en.wikipedia.org/wiki/Tony_Stark_(Marvel_Cinematic_Universe)"),
             //HerosInfo(name:"Spiderman",company:"Marvel",video:"",web:"https://en.wikipedia.org/wiki/Spider-Man"),
-            HerosInfo(name:"Greenlantern",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Green_Lantern"),
+            //HerosInfo(name:"Greenlantern",company:"DC",video:"",web:"https://en.wikipedia.org/wiki/Green_Lantern"),
         ]
         return heros
     }

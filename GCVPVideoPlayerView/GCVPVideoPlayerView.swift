@@ -10,7 +10,7 @@ import AVKit
 
 class GCVPVideoPlayerView: UIView {
     var videoUrl:URL
-    var videoPlayer: AVPlayer!
+    var videoPlayer: AVPlayer
     var playerLayer: AVPlayerLayer!
     var originalCenter:CGPoint!
     var endedPosition:CGPoint!
@@ -21,14 +21,19 @@ class GCVPVideoPlayerView: UIView {
     var isShrinked:Bool
 
 
-    init(frame: CGRect,videoUrl:URL){
+    init(frame: CGRect, videoUrl: URL, videoPlayer: AVPlayer ){
         print("init")
         self.videoUrl = videoUrl
         self.isShrinked = false
+        self.videoPlayer = videoPlayer
         super.init(frame:frame)
+        /*
         let videoItem = AVPlayerItem(url:self.videoUrl)
+
         videoPlayer = AVPlayer(playerItem: videoItem)
-        playerLayer = AVPlayerLayer(player: videoPlayer)
+         */
+
+        playerLayer = AVPlayerLayer(player: self.videoPlayer)
         playerLayer.backgroundColor = UIColor.clear.cgColor
         playerLayer.videoGravity = .resizeAspect
         self.layer.addSublayer(playerLayer)
